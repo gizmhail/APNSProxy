@@ -27,8 +27,9 @@ $expectedParameters = array(
 		"auth" => "APNSProxy auth token",
 		"deviceToken" => "Device token for the device to target",
 		"payload" => "(optional) Full apns payload as json string",
-		"message" => "(optional ; incompatible with payload) Simple notification title",
-		"title" => "(optional ; incompatible with payload) Simple notification message",
+		"title" => "(optional ; incompatible with payload) Simple notification title",
+		"message" => "(optional ; incompatible with payload) Simple notification message",
+		"category" => "(optional ; incompatible with payload) Simple notification category",
 	);
 /**
  * Notification building
