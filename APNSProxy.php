@@ -22,6 +22,14 @@
 // Paths to credentialsDir. Should be set to an unreachable place
 $credentialsDir = dirname(__FILE__).'/AppleCredentials';
 
+$expectedParameters = array(
+		"appName" => "APNSProxy app name",
+		"auth" => "APNSProxy auth token",
+		"deviceToken" => "Device token for the device to target",
+		"payload" => "(optional) Full apns payload as json string",
+		"message" => "(optional ; incompatible with payload) Simple notification title",
+		"title" => "(optional ; incompatible with payload) Simple notification message",
+	);
 /**
  * Notification building
  */
@@ -127,10 +135,11 @@ $pemPassphraseFilePath = $credentialsDir.'/'.$appName.'_'.$pemSuffix.'.pass';
 $authFilePath = $credentialsDir.'/'.$appName.'_'.$pemSuffix.'.auth';
 
 $output = array();
-$output['appName'] = $appName;
 if($deviceToken == null){
 	$output['error'] = "Missing device token";
+	$output['expectedParameters'] = $expectedParameters;
 } else if(is_file($pemCertificateFilePath) && is_file($pemPassphraseFilePath)) {
+	$output['appName'] = $appName;
 	// Private key's passphrase
 	$pemPassPhrase = trim(file_get_contents($pemPassphraseFilePath));
 
@@ -158,10 +167,12 @@ if($deviceToken == null){
 	} else {
 		// Authorization failed
 		$output['error'] = "Authorization failed";
+		$output['expectedParameters'] = $expectedParameters;
 	}
 } else {
 	// Unknow application
 	$output['error'] = "Unknown application";
+	$output['expectedParameters'] = $expectedParameters;
 }
 
 // Result
