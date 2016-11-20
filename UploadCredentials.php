@@ -16,9 +16,6 @@ $passphrase = isset($_REQUEST[$appField])?$_REQUEST[$passphraseField]:null;
 $useProd = isset($_REQUEST[$prodField])?($_REQUEST[$prodField]=='true'):false;
 $auth = isset($_REQUEST[$authField])?$_REQUEST[$authField]:null;
 
-echo "<pre>";var_dump($_REQUEST);echo "</pre>";
-echo "<pre>";var_dump($_FILES);echo "</pre>";
-
 $logs = array();
 if( isset($_FILES[$fileField]) && $passphrase ){
 	$fileName = basename($_FILES[$fileField]['name']);
